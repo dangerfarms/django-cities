@@ -69,7 +69,7 @@ class Command(BaseCommand):
             default='all',
             help='Selectively import data. Comma separated list of data ' +
                  'types: ' + str(import_opts).replace("'", ''),
-         )
+        )
         parser.add_argument(
             '--flush',
             metavar="DATA_TYPES",
