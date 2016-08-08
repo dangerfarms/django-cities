@@ -56,24 +56,26 @@ class Command(BaseCommand):
         data_dir = os.path.join(app_dir, 'data')
     logger = logging.getLogger("cities")
 
-    option_list = BaseCommand.option_list + (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--force',
             action='store_true',
             default=False,
-            help='Import even if files are up-to-date.'),
-        make_option(
+            help='Import even if files are up-to-date.',
+        )
+        parser.add_argument(
             '--import',
             metavar="DATA_TYPES",
             default='all',
             help='Selectively import data. Comma separated list of data ' +
-                 'types: ' + str(import_opts).replace("'", '')),
-        make_option(
+                 'types: ' + str(import_opts).replace("'", ''),
+         )
+        parser.add_argument(
             '--flush',
             metavar="DATA_TYPES",
             default='',
-            help="Selectively flush data. Comma separated list of data types."),
-    )
+            help="Selectively flush data. Comma separated list of data types.",
+        )
 
     @_transact
     def handle(self, *args, **options):
